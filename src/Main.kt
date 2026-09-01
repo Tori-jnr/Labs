@@ -8,23 +8,26 @@ fun main() {
 
     println("\n Welcome to the Tenant Management System \n")
 
-    val tenantId : Int = 1001  // tenantId uses val because the tenant ID should not be reassigned.
+    val tenantId: Int = 1001  // tenantId uses val because the tenant ID should not be reassigned.
     // tenantId = 1002 brings error - Kotlin: 'val' cannot be reassigned.
     // tenantId cannot be reassigned because 'val' makes a variable immutable —
     // its value is fixed once it's assigned.
     //use var to make it compile
 
-    val name : String = "Jane Wanjiku"   // name uses val because the tenant's name is not being changed.
-    val phoneNumber: String = "0712345678" // phoneNumber uses val because the phone number is not being changed in this record.
+    val name: String = "Jane Wanjiku"   // name uses val because the tenant's name is not being changed.
+    val phoneNumber: String =
+        "0712345678" // phoneNumber uses val because the phone number is not being changed in this record.
     // Numbers can start with 0 which an Int would drop.
-   // We don't do math with a phone number, so it should not be numeric
+    // We don't do math with a phone number, so it should not be numeric
 
     val houseNumber: String = "A-204"  // houseNumber uses val because the house number is not being changed.
     val monthlyRent: Int = 25000   // monthlyRent uses val because the rent amount remains fixed for this record.
-    var amountPaid: Int = 15000   // amountPaid uses var because the amount paid can change when the tenant makes another payment.
-    val block : Char = 'A'
-    var isActive : Boolean = true
-    val rentAsDouble: Double = monthlyRent.toDouble()   // val rentAsDouble: Double = monthlyRent Does not compile. error - expected double
+    var amountPaid: Int =
+        15000   // amountPaid uses var because the amount paid can change when the tenant makes another payment.
+    val block: Char = 'A'
+    var isActive: Boolean = true
+    val rentAsDouble: Double =
+        monthlyRent.toDouble()   // val rentAsDouble: Double = monthlyRent Does not compile. error - expected double
 // this is to ensure type safety and prevent hidden bugs
 
     val registrationNumber: Long = 999_999_999L
@@ -92,5 +95,88 @@ fun main() {
         else -> println("Large outstanding balance")
     } // more readable
 
+    val monthsBehind = 15
 
+    when (monthsBehind) {
+        0 -> println("Rent is up to date")
+        in 1..2 -> println("Early arrears")
+        in 3..5 -> println("Serious arrears")
+        in 6..12 -> println("Critical arrears")
+        else -> println("Review tenant account")
+    }
+
+    val tenantStatus = "VACATED"
+    when (tenantStatus) {
+        "ACTIVE" -> println("Tenant is currently occupying the house")
+        "VACATED" -> println("Tenant has vacated the house")
+        "PENDING" -> println("Tenant's status is pending confirmation")
+        else -> println("Unknown status")
+    }
+
+    for (month in 1..12) {
+        println("Month: $month")
+    }
+
+    for (month in 1..12 step 2) {
+        println("Checking payment history for month $month")
+    }
+
+    for (month in 5 downTo 1) {
+        println("Month remaining: $month")
+    }
+
+    val tenants = listOf("Jane", "Brian", "Mary", "David")
+    for ((index, tenant) in tenants.withIndex()) {
+        println("${index + 1}. $tenant") // index + 1 is used because withIndex() starts counting from 0, but a numbered list for people starts from 1
+    }
+
+    var vacantHouses = 0
+// Version A
+    while (vacantHouses > 0) {
+        println("Checking vacant houses...")
+    }  // while checks the condition BEFORE running the loop body, so it never runs if the condition starts false
+
+// Version B
+    do {
+        println("Checking vacant houses...")
+    } while (vacantHouses > 0) // do-while checks the condition AFTER running the loop body once, so it always runs at least one time.
+
+    repeat(3) {
+        println("Please pay your rent.")
+    }
+
+    val mutableTenantList = mutableListOf("Jane Wanjiku", "Brian Otieno", "Mary Achieng", "John Kamau")
+    mutableTenantList.add("David Mwangi")
+    mutableTenantList.remove("Brian Otieno")
+
+    println("First tenant: ${mutableTenantList[0]}")
+    println("Last tenant: ${mutableTenantList[mutableTenantList.size - 1]}")
+    println(mutableTenantList)
+    println("List size: ${mutableTenantList.size}")
+    //tenantList.add("David Mwangi") - error Unresolved reference 'add'
+    // use mutableListOf to fix
+
+    val houseNumbers = arrayOf("A-101", "A-102", "A-103", "A-104")
+    println("Second house number: ${houseNumbers[1]}")
+    houseNumbers[0] = "A-201"
+    println(houseNumbers.joinToString())
+
+//    val houseNumbers = arrayOf("A-101", "A-102")
+//    println(houseNumbers) it just prints the array's memory reference not the actual values stored inside it.
+
+    println(houseNumbers.joinToString())        // Way 1
+    println(houseNumbers.contentToString())     // Way 2
+
+    val blockA = intArrayOf(1, 2, 3)
+    val blockB = intArrayOf(4, 5, 6)
+    val combined = blockA + blockB //puts the left-hand array's elements first, followed by the right-hand array's elements
+    println(combined.joinToString())
+    val combinedSwapped = blockB + blockA
+    println(combinedSwapped.joinToString())
+
+    // A MutableList can add/remove elements
+   // while an Array has a fixed size set at creation that can never change.
+
+    // An Array can have its elements changed even when declared with val
+   //but a read-only List has no methods to modify its contents, regardless of val or var.
 }
