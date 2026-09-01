@@ -31,9 +31,9 @@ fun main() {
     println("Amount Before: $amountPaid")
     println("Amount After: $amountPaidAfter")
 
-
-
-
+// Task 1.3 error; conflicting declarations
+// The compiler refuses because it reads duplicate local values that is tenantId
+// changing from val to var
 
 
 
