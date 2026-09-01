@@ -8,10 +8,23 @@ fun main() {
     //Task 1.1
 
     val tenantId: Int = 1001
+
+    // Task 1.3 error; conflicting declarations
+   // The compiler refuses because it reads duplicate local values that is tenantId
+  // changing from val to var
+
     val tenantName: String = "Yida"
+
+    //Task 2.1; Phone Number is stored as String because;
+    // the compiler returns an error to Int inputs that begin with a zero
+   // and also the phoneNumber could be written using the country's code which usually begins with a '+'
+
     val phoneNumber: String = "0780072935"
     val houseNumber: String = "A-330"
+    val block: Char = 'A'
+    var isActive: Boolean = true
     val monthlyRent: Int = 20000
+    val rentAsDouble: Double = monthlyRent.toDouble()
     println("Key in Amount Paid: ")
     var amountPaid: Int = readln().toInt()
     println("Key in Added Amount: ")
@@ -27,16 +40,13 @@ fun main() {
     println("Tenant Name: $tenantName")
     println("Phone Number: $phoneNumber")
     println("House Number: $houseNumber")
-    println("Monthly Rent: $monthlyRent")
+    println("Monthly Rent: $rentAsDouble")
     println("Amount Before: $amountPaid")
     println("Amount After: $amountPaidAfter")
 
-// Task 1.3 error; conflicting declarations
-// The compiler refuses because it reads duplicate local values that is tenantId
-// changing from val to var
-
-
-
+//Task 2.3; The code would change the data type of monthlyRent under rentAsDouble to double
+// No it doesn't compile. Actual error: Initializer type mismatch: expected 'Double', actual 'Int'.
+//
 
 
 
