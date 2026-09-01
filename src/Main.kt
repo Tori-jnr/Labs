@@ -23,6 +23,7 @@ fun main() {
     val houseNumber: String = "A-330"
     val block: Char = 'A'
     var isActive: Boolean = true
+    val registrationNumber: Long = 9_9_9_9_9_9_9_9_9
     val monthlyRent: Int = 20000
     val rentAsDouble: Double = monthlyRent.toDouble()
     println("Key in Amount Paid: ")
@@ -43,6 +44,8 @@ fun main() {
     println("Monthly Rent: $rentAsDouble")
     println("Amount Before: $amountPaid")
     println("Amount After: $amountPaidAfter")
+    println("House Staus: $isActive")
+    println("Registration Number: $registrationNumber")
 
 //Task 2.3; The code would change the data type of monthlyRent under rentAsDouble to double
 // No it doesn't compile. Actual error: Initializer type mismatch: expected 'Double', actual 'Int'.
