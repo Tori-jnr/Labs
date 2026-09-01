@@ -45,8 +45,8 @@ fun main() {
     println("Phone Number: $phoneNumber")
     println("House Number: $houseNumber")
     println("Monthly Rent: $rentAsDouble")
-    println("Amount Before: $amountPaid")
-    println("Amount After: $amountPaidAfter")
+    println("Amount Paid Before: $amountPaid")
+    println("Amount Paid After: $amountPaidAfter")
     println("House Staus: $isActive")
     println("Registration Number: $registrationNumber")
 
@@ -67,9 +67,10 @@ println("$tenantName lives in house $houseNumber")
 //
     println("Total Rent Amount for 6 months ${rentAsDouble * 6}")
 
-    println("\n=====RENT RECEIPT======\n")
+    println("\n===== RENT RECEIPT ======\n")
     println("Tenant Name: $tenantName")
     println("House Number: $houseNumber")
+    println("Amount Paid After: $amountPaidAfter")
 
 
 
