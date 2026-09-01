@@ -23,7 +23,10 @@ fun main() {
     val houseNumber: String = "A-330"
     val block: Char = 'A'
     var isActive: Boolean = true
+
+    //Task 2.4; The underscore do not show in the output
     val registrationNumber: Long = 9_9_9_9_9_9_9_9_9
+
     val monthlyRent: Int = 20000
     val rentAsDouble: Double = monthlyRent.toDouble()
     println("Key in Amount Paid: ")
@@ -49,7 +52,24 @@ fun main() {
 
 //Task 2.3; The code would change the data type of monthlyRent under rentAsDouble to double
 // No it doesn't compile. Actual error: Initializer type mismatch: expected 'Double', actual 'Int'.
+
+//PART 3 - Task 3.1
+//println("" +tenantName+ "lives in house" +houseNumber)
+
+// Task 3.2
+println("$tenantName lives in house $houseNumber")
+
+//The string template makes the code more readable
+// output when using string template; Yida lives in house A-330
+// output when using concatenation; Yidalives in houseA-330
 //
+//
+//
+    println("Total Rent Amount for 6 months ${rentAsDouble * 6}")
+
+    println("\n=====RENT RECEIPT======\n")
+    println("Tenant Name: $tenantName")
+    println("House Number: $houseNumber")
 
 
 
