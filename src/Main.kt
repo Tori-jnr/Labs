@@ -1,141 +1,182 @@
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
+// Group Members:
+// 200159 - Juliet Nyakiamo
+// 175852 - Lumumba Kimberly
+// 192789 - Salama Shali
+// 189600 - Gitacu Elizabeth
+
 fun main() {
-//Part 0 - SetUp
+
     println("\n Welcome to the Tenant Management System \n")
 
-    //Tenant Details
-    //Task 1.1
+    val tenantId: Int = 1001  // tenantId uses val because the tenant ID should not be reassigned.
+    // tenantId = 1002 brings error - Kotlin: 'val' cannot be reassigned.
+    // tenantId cannot be reassigned because 'val' makes a variable immutable —
+    // its value is fixed once it's assigned.
+    //use var to make it compile
 
-    val tenantId: Int = 1001
+    val name: String = "Jane Wanjiku"   // name uses val because the tenant's name is not being changed.
+    val phoneNumber: String =
+        "0712345678" // phoneNumber uses val because the phone number is not being changed in this record.
+    // Numbers can start with 0 which an Int would drop.
+    // We don't do math with a phone number, so it should not be numeric
 
-    // Task 1.3 error; conflicting declarations
-    // The compiler refuses because it reads duplicate local values that is tenantId
-    // changing from val to var
-
-    val tenantName: String = "Yida"
-
-    //Task 2.1; Phone Number is stored as String because;
-    // the compiler returns an error to Int inputs that begin with a zero
-    // and also the phoneNumber could be written using the country's code which usually begins with a '+'
-
-    val phoneNumber: String = "0780072935"
-    val houseNumber: String = "A-330"
+    val houseNumber: String = "A-204"  // houseNumber uses val because the house number is not being changed.
+    val monthlyRent: Int = 25000   // monthlyRent uses val because the rent amount remains fixed for this record.
+    var amountPaid: Int =
+        15000   // amountPaid uses var because the amount paid can change when the tenant makes another payment.
     val block: Char = 'A'
     var isActive: Boolean = true
+    val rentAsDouble: Double =
+        monthlyRent.toDouble()   // val rentAsDouble: Double = monthlyRent Does not compile. error - expected double
+// this is to ensure type safety and prevent hidden bugs
 
-    //Task 2.4; The underscore do not show in the output
-    val registrationNumber: Long = 9_9_9_9_9_9_9_9_9
+    val registrationNumber: Long = 999_999_999L
+    println("Company Registration Number: $registrationNumber")
 
-    val monthlyRent: Int = 25000
-    val rentAsDouble: Double = monthlyRent.toDouble()
-    println("Key in Amount Paid: ")
-    var amountPaid: Int= readln().toInt()
-    println("Key in Added Amount: ")
-    var addedAmountPaid: Int = readln().toInt()
-    var amountPaidAfter = amountPaid + addedAmountPaid
+    println("Amount paid before: $amountPaid")
+    amountPaid = amountPaid + 5000
+    println("Amount paid after: $amountPaid")
+    println(name + " lives in house " + houseNumber)
+    println("$name lives in house $houseNumber") // this is easier to read
+    println("Total rent for 6 months: KES ${monthlyRent * 6}")
 
-    //val is used in tenant; Id,Name,phone,houseNumber and monthlyRent since the elements are immutable
-    //var is used in amountPaid since the elements are mutable.
+    val receipt = """
+    ===== RENT RECEIPT =====
+    Tenant: $name
+    House: $houseNumber
+    Paid: KES $amountPaid
+""".trimIndent() // .trimIndent removes common leading spaces from a multiline string so it aligns to left margin
+    println(receipt)
 
-    //amountPaid genuinely needs to be var as it changes based on the payment made by the Tenant
-
-    println("Tenant Id: $tenantId")
-    println("Tenant Name: $tenantName")
-    println("Phone Number: $phoneNumber")
-    println("House Number: $houseNumber")
-    println("Monthly Rent: $rentAsDouble")
-    println("Amount Paid Before: $amountPaid")
-    println("Amount Paid After: $amountPaidAfter")
-    println("House Staus: $isActive")
-    println("Registration Number: $registrationNumber")
-
-//Task 2.3; The code would change the data type of monthlyRent under rentAsDouble to double
-// No it doesn't compile. Actual error: Initializer type mismatch: expected 'Double', actual 'Int'.
-
-//PART 3 - Task 3.1
-//println("" +tenantName+ "lives in house" +houseNumber)
-
-// Task 3.2
-    println("$tenantName lives in house $houseNumber")
-
-//The string template makes the code more readable
-// output when using string template; Yida lives in house A-330
-// output when using concatenation; Yidalives in houseA-330
-//
-//
-//
-    println("Total Rent Amount for 6 months ${rentAsDouble * 6}")
-
-///Task 3.4
-    println("\n===== RENT RECEIPT ======\n")
-    println("Tenant Name: $tenantName")
-    println("House Number: $houseNumber")
-    println("Amount Paid After: $amountPaidAfter")
-
-//Task 3.5
-//The code should print the output in uppercase val greeting = "Dear Tenant"
     val greeting = "Dear Tenant"
-    greeting.uppercase()
-    println(greeting)
-// greeting remains unchanged since it is a val;immutable
-//
+    greeting.uppercase() // strings are immutable hence greeting wont be changed
+    println(greeting) // println(greeting.uppercase()) would print in upper case
 
-//PART 4; Task 4.1
-    var balance = rentAsDouble - amountPaid
-    println("Balance: $balance")
+    val balance = monthlyRent - amountPaid
+    println("Balance: KES $balance")
 
+    //val percentPaid = (amountPaid / monthlyRent) * 100
+    //println("Paid: $percentPaid%") // not correct, brings 0%. 2 integers are divided by one another and it throws away the decimal pert completely
 
-//Task 4.2
-// output of (20000/25000) * 100 = 80%
+    val percentPaid = (amountPaid * 100) / monthlyRent
+    println("Paid: $percentPaid%")
 
-    //var percentPaid = (amountPaid / monthlyRent) * 100
-   // println("Paid Percentage: $percentPaid")
+    //val percentPaid = (amountPaid.toDouble() / monthlyRent) * 100
+    //println("Paid: ${percentPaid.toInt()}%") ANOTHER WAY TO GET 80%
 
-//Obtained output = 0
-// amountPaid was set to have a data type In so when the calculations begin within the bracket the obtained answer; 0.8 is truncated to the nearest Int hence the output = 0
-//Changing the data type of amountPaid to double so that it reads
-    //println("Key in Amount Paid: ")
-   // var amountPaid: Double = readln().toDouble()
-//Computing the multipication of the amountPaid
+    val instalmentAmount = 6000
+    val fullInstalments = monthlyRent / instalmentAmount
+    val remainingAmount = monthlyRent % instalmentAmount
 
+    println("Full instalments: $fullInstalments")
+    println("Remaining amount: KES $remainingAmount")
 
+    val totalRent = monthlyRent.times(6)
 
+    val isRentPaid = amountPaid >= monthlyRent
+    println("Is rent paid: $isRentPaid")
 
-
-
-
-
-
-
+    val monthsInArrears = 1
+    val needsReminder = balance > 0 && monthsInArrears > 1
+    println("Needs reminder: $needsReminder") // false. 1 = 1 not > 1. && needs both to be true hence its false
 
 
+//    if (balance <= 0) {
+//        println("Rent is fully paid")
+//    } else if (balance < 10000) {
+//        println("Small outstanding balance")
+//    } else {
+//        println("Large outstanding balance")
+//    }
 
+    when {
+        balance <= 0 -> println("Rent is fully paid")
+        balance < 10000 -> println("Small outstanding balance")
+        else -> println("Large outstanding balance")
+    } // more readable
 
+    val monthsBehind = 15
 
+    when (monthsBehind) {
+        0 -> println("Rent is up to date")
+        in 1..2 -> println("Early arrears")
+        in 3..5 -> println("Serious arrears")
+        in 6..12 -> println("Critical arrears")
+        else -> println("Review tenant account")
+    }
 
+    val tenantStatus = "VACATED"
+    when (tenantStatus) {
+        "ACTIVE" -> println("Tenant is currently occupying the house")
+        "VACATED" -> println("Tenant has vacated the house")
+        "PENDING" -> println("Tenant's status is pending confirmation")
+        else -> println("Unknown status")
+    }
 
+    for (month in 1..12) {
+        println("Month: $month")
+    }
 
+    for (month in 1..12 step 2) {
+        println("Checking payment history for month $month")
+    }
 
+    for (month in 5 downTo 1) {
+        println("Month remaining: $month")
+    }
 
+    val tenants = listOf("Jane", "Brian", "Mary", "David")
+    for ((index, tenant) in tenants.withIndex()) {
+        println("${index + 1}. $tenant") // index + 1 is used because withIndex() starts counting from 0, but a numbered list for people starts from 1
+    }
 
+    var vacantHouses = 0
+// Version A
+    while (vacantHouses > 0) {
+        println("Checking vacant houses...")
+    }  // while checks the condition BEFORE running the loop body, so it never runs if the condition starts false
 
+// Version B
+    do {
+        println("Checking vacant houses...")
+    } while (vacantHouses > 0) // do-while checks the condition AFTER running the loop body once, so it always runs at least one time.
 
+    repeat(3) {
+        println("Please pay your rent.")
+    }
 
+    val mutableTenantList = mutableListOf("Jane Wanjiku", "Brian Otieno", "Mary Achieng", "John Kamau")
+    mutableTenantList.add("David Mwangi")
+    mutableTenantList.remove("Brian Otieno")
 
+    println("First tenant: ${mutableTenantList[0]}")
+    println("Last tenant: ${mutableTenantList[mutableTenantList.size - 1]}")
+    println(mutableTenantList)
+    println("List size: ${mutableTenantList.size}")
+    //tenantList.add("David Mwangi") - error Unresolved reference 'add'
+    // use mutableListOf to fix
 
+    val houseNumbers = arrayOf("A-101", "A-102", "A-103", "A-104")
+    println("Second house number: ${houseNumbers[1]}")
+    houseNumbers[0] = "A-201"
+    println(houseNumbers.joinToString())
 
+//    val houseNumbers = arrayOf("A-101", "A-102")
+//    println(houseNumbers) it just prints the array's memory reference not the actual values stored inside it.
 
+    println(houseNumbers.joinToString())        // Way 1
+    println(houseNumbers.contentToString())     // Way 2
 
+    val blockA = intArrayOf(1, 2, 3)
+    val blockB = intArrayOf(4, 5, 6)
+    val combined = blockA + blockB //puts the left-hand array's elements first, followed by the right-hand array's elements
+    println(combined.joinToString())
+    val combinedSwapped = blockB + blockA
+    println(combinedSwapped.joinToString())
 
+    // A MutableList can add/remove elements
+   // while an Array has a fixed size set at creation that can never change.
 
-
-
-
-
-
-
-
-
-
+    // An Array can have its elements changed even when declared with val
+   //but a read-only List has no methods to modify its contents, regardless of val or var.
 }
