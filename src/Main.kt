@@ -179,4 +179,38 @@ fun main() {
 
     // An Array can have its elements changed even when declared with val
    //but a read-only List has no methods to modify its contents, regardless of val or var.
+
+//PART 8; Null Saftey
+
+    var tenantEmail: String? = "jane@gmail.com"
+//error: null cannot be a value of a non-null 'String'
+//add the character '?'
+
+    println("Tenant Email:  ${tenantEmail}")
+//No, the property manager will view it as an error in the system
+
+val email = tenantEmail?: "Email not provided"
+    println("Email: $email")
+
+
+//Assumption var tenantEmail: String? = null
+    println(tenantEmail?.length)// output will return null
+    println(tenantEmail?.length ?: 0)// output will print the value 0 instead of null
+    println(tenantEmail!!.length)//output will be the length of the email if it exists
+//a double-bang operator; it forces a nullable var to be treated as a non-null
+// used only when certain that a var will not be null at runtime
+
+    var nextOfKin: String? = "Yvonne Wambui"
+println(nextOfKin?.uppercase() ?:"No next of Kin on record")
+
+
+
+
+
+
+
+
+
+
+
 }
