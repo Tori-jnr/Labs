@@ -8,6 +8,8 @@ fun main() {
 
     println("\n Welcome to the Tenant Management System \n")
 
+    // ================= PART 1 — VARIABLES =================
+
     val tenantId: Int = 1001  // tenantId uses val because the tenant ID should not be reassigned.
     // tenantId = 1002 brings error - Kotlin: 'val' cannot be reassigned.
     // tenantId cannot be reassigned because 'val' makes a variable immutable —
@@ -26,6 +28,9 @@ fun main() {
         15000   // amountPaid uses var because the amount paid can change when the tenant makes another payment.
     val block: Char = 'A'
     var isActive: Boolean = true
+
+    // ================= PART 2 — DATA TYPES AND CASTING =================
+
     val rentAsDouble: Double =
         monthlyRent.toDouble()   // val rentAsDouble: Double = monthlyRent Does not compile. error - expected double
 // this is to ensure type safety and prevent hidden bugs
@@ -36,6 +41,9 @@ fun main() {
     println("Amount paid before: $amountPaid")
     amountPaid = amountPaid + 5000
     println("Amount paid after: $amountPaid")
+
+    // ================= PART 3 — STRINGS =================
+
     println(name + " lives in house " + houseNumber)
     println("$name lives in house $houseNumber") // this is easier to read
     println("Total rent for 6 months: KES ${monthlyRent * 6}")
@@ -51,6 +59,8 @@ fun main() {
     val greeting = "Dear Tenant"
     greeting.uppercase() // strings are immutable hence greeting wont be changed
     println(greeting) // println(greeting.uppercase()) would print in upper case
+
+    // ================= PART 4 — OPERATORS =================
 
     val balance = monthlyRent - amountPaid
     println("Balance: KES $balance")
@@ -79,6 +89,8 @@ fun main() {
     val monthsInArrears = 1
     val needsReminder = balance > 0 && monthsInArrears > 1
     println("Needs reminder: $needsReminder") // false. 1 = 1 not > 1. && needs both to be true hence its false
+
+    // ================= PART 5 — MAKING DECISIONS =================
 
 
 //    if (balance <= 0) {
@@ -113,6 +125,8 @@ fun main() {
         else -> println("Unknown status")
     }
 
+    // ================= PART 6 — RANGES AND LOOPS =================
+
     for (month in 1..12) {
         println("Month: $month")
     }
@@ -145,6 +159,8 @@ fun main() {
         println("Please pay your rent.")
     }
 
+    // ================= PART 7 — LISTS AND ARRAYS =================
+
     val mutableTenantList = mutableListOf("Jane Wanjiku", "Brian Otieno", "Mary Achieng", "John Kamau")
     mutableTenantList.add("David Mwangi")
     mutableTenantList.remove("Brian Otieno")
@@ -161,8 +177,8 @@ fun main() {
     houseNumbers[0] = "A-201"
     println(houseNumbers.joinToString())
 
-//    val houseNumbers = arrayOf("A-101", "A-102")
-//    println(houseNumbers) it just prints the array's memory reference not the actual values stored inside it.
+//   val houseNumbers = arrayOf("A-101", "A-102")
+//   println(houseNumbers) it just prints the array's memory reference not the actual values stored inside it.
 
     println(houseNumbers.joinToString())        // Way 1
     println(houseNumbers.contentToString())     // Way 2
@@ -180,37 +196,6 @@ fun main() {
     // An Array can have its elements changed even when declared with val
    //but a read-only List has no methods to modify its contents, regardless of val or var.
 
-//PART 8; Null Saftey
-
-    var tenantEmail: String? = "jane@gmail.com"
-//error: null cannot be a value of a non-null 'String'
-//add the character '?'
-
-    println("Tenant Email:  ${tenantEmail}")
-//No, the property manager will view it as an error in the system
-
-val email = tenantEmail?: "Email not provided"
-    println("Email: $email")
-
-
-//Assumption var tenantEmail: String? = null
-    println(tenantEmail?.length)// output will return null
-    println(tenantEmail?.length ?: 0)// output will print the value 0 instead of null
-    println(tenantEmail!!.length)//output will be the length of the email if it exists
-//a double-bang operator; it forces a nullable var to be treated as a non-null
-// used only when certain that a var will not be null at runtime
-
-    var nextOfKin: String? = "Yvonne Wambui"
-println(nextOfKin?.uppercase() ?:"No next of Kin on record")
-
-
-
-
-
-
-
-
-
-
+    // ================= PART 8 — NULL SAFETY =================
 
 }
