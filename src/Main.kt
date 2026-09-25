@@ -3,6 +3,7 @@
 // 175852 - Lumumba Kimberly
 // 192789 - Salama Shali
 // 189600 - Gitacu Elizabeth
+//TenantManagementLab2
 
 fun main() {
 
@@ -291,7 +292,7 @@ fun main() {
                println("Tenant: ${tenant.name}")
                println("Rent: ${tenant.rentAmount}")
                println("Rent paid: ${tenant.isPaid}")
-           }
+           }//The output is the apartment number and within the details of tenants that stay in that apartment.
        }
 
 
