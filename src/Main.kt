@@ -292,4 +292,9 @@ fun main() {
 
     //--------TASK 7--------
 
+    fun showTenants(){
+
+    }
+
+
 }
