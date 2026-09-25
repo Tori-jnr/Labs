@@ -246,6 +246,12 @@ fun main() {
                     println("Rent amount cannot be negative")
                 }
             }
+            //------TASK 4----
+            get() { // The getter is executed whenever the property's rentAmount is accessed or read.
+                println("Rent amount accessed.")
+                return field
+            // Getting a property means reading its current value, while setting a property means changing its value.
+            }
         fun payRent() {
             isPaid = true
             println("Rent paid successfully by $name")
@@ -256,15 +262,20 @@ fun main() {
         val tenant1 = Tenant("John", 101)
         val tenant2 = Tenant("Mary", 102) // passing information through a constructor makes object creation shorter, one line instead of several.
 
-        tenant1.rentAmount = 15000.0
+        tenant1.rentAmount = 15000.0 //set
+        //tenant1.rentAmount = -5000.0
+        //println("Tenant 1 rent: ${tenant1.rentAmount}")
         tenant2.rentAmount = 28000.0
 
         tenant1.payRent()
-
+        println(tenant1.rentAmount) //get
         println("${tenant1.name}'s payment status: ${tenant1.isPaid}")
         println("${tenant2.name}'s payment status: ${tenant2.isPaid}")
     }
 
+    class Apartment{
+
+    }
 
 
 
