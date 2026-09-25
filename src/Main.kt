@@ -281,7 +281,7 @@ fun main() {
    // ----------TASK 5--------
    class Apartment (
         var apartmentNumber: Int,
-        var tenants: MutableList<Tenant>
+        var tenants: MutableList<Tenant> = mutableListOf(),
 
 ){
      fun addTenant(tenant: Tenant){
