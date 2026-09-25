@@ -185,16 +185,17 @@ fun main() {
 
     val blockA = intArrayOf(1, 2, 3)
     val blockB = intArrayOf(4, 5, 6)
-    val combined = blockA + blockB //puts the left-hand array's elements first, followed by the right-hand array's elements
+    val combined =
+        blockA + blockB //puts the left-hand array's elements first, followed by the right-hand array's elements
     println(combined.joinToString())
     val combinedSwapped = blockB + blockA
     println(combinedSwapped.joinToString())
 
     // A MutableList can add/remove elements
-   // while an Array has a fixed size set at creation that can never change.
+    // while an Array has a fixed size set at creation that can never change.
 
     // An Array can have its elements changed even when declared with val
-   //but a read-only List has no methods to modify its contents, regardless of val or var.
+    //but a read-only List has no methods to modify its contents, regardless of val or var.
 
     // ================= PART 8 — NULL SAFETY =================
 
@@ -205,7 +206,7 @@ fun main() {
     println("Tenant Email:  ${tenantEmail}")
 //No, the property manager will view it as an error in the system
 
-    val email = tenantEmail?: "Email not provided"
+    val email = tenantEmail ?: "Email not provided"
     println("Email: $email")
     tenantEmail = "jane@example.com"
     println("Email: ${tenantEmail ?: "Not provided"}")
@@ -226,7 +227,40 @@ fun main() {
     println(nextOfKin?.uppercase() ?: "No next of kin on record")
 
     var nextOfKin1: String? = "Yvonne Wambui"
-    println(nextOfKin1?.uppercase() ?:"No next of Kin on record")
+    println(nextOfKin1?.uppercase() ?: "No next of Kin on record")
 
+    //-----LAB 2---->
+    //------TASK 1--------
+
+    class Tenant {
+        var name: String = " "
+        var apartmentNumber: Int = 0
+        var rentAmount: Double = 0.0
+        var isPaid: Boolean = false
+
+            fun payRent() {
+                isPaid = true
+                println("Rent paid successfully by $name")
+            }
+        }
+    fun main(){
+        val tenant1 = Tenant()  // a class is only a blueprint.
+        val tenant2 = Tenant() // Every object made from it gets its separate copy of the properties. Changing tenant1's details has no effect on tenant2.
+
+        tenant1.name = "John"
+        tenant1.apartmentNumber = 101
+        tenant1.rentAmount = 15000.0
+
+        tenant2.name = "Mary"
+        tenant2.apartmentNumber = 102
+        tenant2.rentAmount = 28000.0
+
+        tenant1.payRent()
+        println("${tenant1.name}'s payment status: ${tenant1.isPaid}")
+        println("${tenant2.name}'s payment status: ${tenant2.isPaid}")
+    }
+
+
+    //----TASK 2------
 
 }
