@@ -229,38 +229,34 @@ fun main() {
     var nextOfKin1: String? = "Yvonne Wambui"
     println(nextOfKin1?.uppercase() ?: "No next of Kin on record")
 
-    //-----LAB 2---->
-    //------TASK 1--------
+    //-----LAB 3---->
+    //------TASK 1 AND 2--------
 
-    class Tenant {
-        var name: String = " "
-        var apartmentNumber: Int = 0
-        var rentAmount: Double = 0.0
+    class Tenant(
+        var name: String,
+        var apartmentNumber: Int,
+        var rentAmount: Double
+    ) {
         var isPaid: Boolean = false
-
-            fun payRent() {
-                isPaid = true
-                println("Rent paid successfully by $name")
-            }
+        fun payRent() {
+            isPaid = true
+            println("Rent paid successfully by $name")
         }
-    fun main(){
-        val tenant1 = Tenant()  // a class is only a blueprint.
-        val tenant2 = Tenant() // Every object made from it gets its separate copy of the properties. Changing tenant1's details has no effect on tenant2.
+    }
 
-        tenant1.name = "John"
-        tenant1.apartmentNumber = 101
-        tenant1.rentAmount = 15000.0
-
-        tenant2.name = "Mary"
-        tenant2.apartmentNumber = 102
-        tenant2.rentAmount = 28000.0
+    fun main() {   // a class is only a blueprint. Every object made from it gets its separate copy of the properties. Changing tenant1's details has no effect on tenant2.
+        val tenant1 = Tenant("John", 101, 15000.0)
+        val tenant2 = Tenant(
+            "Mary",
+            102,
+            28000.0
+        ) // passing information through a constructor makes object creation shorter, one line instead of several.
 
         tenant1.payRent()
+
         println("${tenant1.name}'s payment status: ${tenant1.isPaid}")
         println("${tenant2.name}'s payment status: ${tenant2.isPaid}")
     }
-
-
-    //----TASK 2------
+    //----------TASK 3--------
 
 }
