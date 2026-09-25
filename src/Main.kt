@@ -234,10 +234,18 @@ fun main() {
 
     class Tenant(
         var name: String,
-        var apartmentNumber: Int,
-        var rentAmount: Double
+        var apartmentNumber: Int
     ) {
         var isPaid: Boolean = false
+        //-----TASK 3-----
+        var rentAmount: Double = 0.0
+            set(value) { //validate a value before storing it because it prevents invalid data from being stored in the object
+                if(value >= 0){
+                    field = value
+                }else{
+                    println("Rent amount cannot be negative")
+                }
+            }
         fun payRent() {
             isPaid = true
             println("Rent paid successfully by $name")
@@ -245,18 +253,19 @@ fun main() {
     }
 
     fun main() {   // a class is only a blueprint. Every object made from it gets its separate copy of the properties. Changing tenant1's details has no effect on tenant2.
-        val tenant1 = Tenant("John", 101, 15000.0)
-        val tenant2 = Tenant(
-            "Mary",
-            102,
-            28000.0
-        ) // passing information through a constructor makes object creation shorter, one line instead of several.
+        val tenant1 = Tenant("John", 101)
+        val tenant2 = Tenant("Mary", 102) // passing information through a constructor makes object creation shorter, one line instead of several.
+
+        tenant1.rentAmount = 15000.0
+        tenant2.rentAmount = 28000.0
 
         tenant1.payRent()
 
         println("${tenant1.name}'s payment status: ${tenant1.isPaid}")
         println("${tenant2.name}'s payment status: ${tenant2.isPaid}")
     }
-    //----------TASK 3--------
+
+
+
 
 }
