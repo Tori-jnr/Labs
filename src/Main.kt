@@ -237,12 +237,13 @@ fun main() {
         var apartmentNumber: Int
     ) {
         var isPaid: Boolean = false
+
         //-----TASK 3-----
         var rentAmount: Double = 0.0
             set(value) { //validate a value before storing it because it prevents invalid data from being stored in the object
-                if(value >= 0){
+                if (value >= 0) {
                     field = value
-                }else{
+                } else {
                     println("Rent amount cannot be negative")
                 }
             }
@@ -250,8 +251,9 @@ fun main() {
             get() { // The getter is executed whenever the property's rentAmount is accessed or read.
                 println("Rent amount accessed.")
                 return field
-            // Getting a property means reading its current value, while setting a property means changing its value.
+                // Getting a property means reading its current value, while setting a property means changing its value.
             }
+
         fun payRent() {
             isPaid = true
             println("Rent paid successfully by $name")
@@ -260,7 +262,10 @@ fun main() {
 
     fun main() {   // a class is only a blueprint. Every object made from it gets its separate copy of the properties. Changing tenant1's details has no effect on tenant2.
         val tenant1 = Tenant("John", 101)
-        val tenant2 = Tenant("Mary", 102) // passing information through a constructor makes object creation shorter, one line instead of several.
+        val tenant2 = Tenant(
+            "Mary",
+            102
+        ) // passing information through a constructor makes object creation shorter, one line instead of several.
 
         tenant1.rentAmount = 15000.0 //set
         //tenant1.rentAmount = -5000.0
@@ -273,10 +278,11 @@ fun main() {
         println("${tenant2.name}'s payment status: ${tenant2.isPaid}")
     }
 
-    class Apartment{
+   // ----------TASK 5--------
+   class Apartment (
+        var apartmentNumber: Int,
+        var tenants: MutableList<Tenant>
 
-    }
-
-
+)
 
 }
