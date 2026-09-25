@@ -283,6 +283,11 @@ fun main() {
         var apartmentNumber: Int,
         var tenants: MutableList<Tenant>
 
-)
+){
+     fun addTenant(tenant: Tenant){
+         tenants.add(tenant)
+         println("${tenant.name} added to Apartment$apartmentNumber")
+     }
+   }
 
 }
