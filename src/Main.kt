@@ -285,25 +285,7 @@ fun main() {
        fun addTenant(tenant: Tenant) {
            this.tenants.add(tenant) // An Apartment has Tenant objects means that the Apartment class stores Tenant objects in its tenants list.
        }
-       //--------TASK 7--------
-       fun showTenants() {
-           println("Apartment: $apartmentNumber")
-           for (tenant in this.tenants) {
-               println("Tenant: ${tenant.name}")
-               println("Rent: ${tenant.rentAmount}")
-               println("Rent paid: ${tenant.isPaid}")
-           }//The output is the apartment number and within the details of tenants that stay in that apartment.
-       }
-
+       //--------TASK 7-------
 
    }
-    val apartment1 = Apartment(101, mutableListOf())
-    apartment1.addTenant(tenant1)
-    apartment1.addTenant(tenant2)
-    println("Number of tenants in apartment: ${apartment1.tenants.size}")
-
-
-
-
-
 }
