@@ -3,7 +3,6 @@
 // 175852 - Lumumba Kimberly
 // 192789 - Salama Shali
 // 189600 - Gitacu Elizabeth
-//TenantManagementLab2
 
 fun main() {
 
@@ -140,8 +139,8 @@ fun main() {
         println("Month remaining: $month")
     }
 
-    val tenants = listOf("Jane", "Brian", "Mary", "David")
-    for ((index, tenant) in tenants.withIndex()) {
+    val tenantNames = listOf("Jane", "Brian", "Mary", "David")
+    for ((index, tenant) in tenantNames.withIndex()) {
         println("${index + 1}. $tenant") // index + 1 is used because withIndex() starts counting from 0, but a numbered list for people starts from 1
     }
 
@@ -232,16 +231,17 @@ fun main() {
 
 
 
-    //-----LAB 3---->
-    //------TASK 1 AND 2--------
+    //----------------------LAB 3---------------
+    //-----------------TASK 1 AND 2-----------------
 
     class Tenant(
         var name: String,
-        var apartmentNumber: Int
+        var apartmentNumber: Int,
+        initialRent: Double
     ) {
         var isPaid: Boolean = false
 
-        //-----TASK 3-----
+        //--------------------TASK 3-----------------
         var rentAmount: Double = 0.0
             set(value) { //validate a value before storing it because it prevents invalid data from being stored in the object
                 if (value >= 0) {
@@ -250,12 +250,15 @@ fun main() {
                     println("Rent amount cannot be negative")
                 }
             }
-            //------TASK 4----
+            //---------------TASK 4---------------
             get() { // The getter is executed whenever the property's rentAmount is accessed or read.
                 println("Rent amount accessed.")
                 return field
                 // Getting a property means reading its current value, while setting a property means changing its value.
             }
+init {
+    rentAmount = initialRent
+}
 
         fun payRent() {
             isPaid = true
@@ -264,12 +267,12 @@ fun main() {
     }
 
       // a class is only a blueprint. Every object made from it gets its separate copy of the properties. Changing tenant1's details has no effect on tenant2.
-        val tenant1 = Tenant("John", 101)
-        val tenant2 = Tenant("Mary", 102) // passing information through a constructor makes object creation shorter, one line instead of several.
+        val tenant1 = Tenant("John", 101, 15000.0)
+        val tenant2 = Tenant("Mary", 102, 28000.0) // passing information through a constructor makes object creation shorter, one line instead of several.
 
-        tenant1.rentAmount = 15000.0 //set
-        //tenant1.rentAmount = -5000.0
-        //println("Tenant 1 rent: ${tenant1.rentAmount}")
+
+        tenant1.rentAmount = -5000.0
+        println("Tenant 1 rent after attempted change: ${tenant1.rentAmount}")
         tenant2.rentAmount = 28000.0
 
         tenant1.payRent()
@@ -277,15 +280,38 @@ fun main() {
         println("${tenant1.name}'s payment status: ${tenant1.isPaid}")
         println("${tenant2.name}'s payment status: ${tenant2.isPaid}")
 
-   // ----------TASK 5--------
+   // -----------TASK 5-------------
    class Apartment (
         var apartmentNumber: Int,
         var tenants: MutableList<Tenant>
-   ) {      //--------TASK 6---------
+   ) {      //------------TASK 6---------
        fun addTenant(tenant: Tenant) {
            this.tenants.add(tenant) // An Apartment has Tenant objects means that the Apartment class stores Tenant objects in its tenants list.
        }
-       //--------TASK 7-------
 
+       //----------TASK 7--------
+       fun showTenants() {
+           println("Apartment: $apartmentNumber")
+           println()
+           for (tenant in tenants) {
+               println("Tenant: ${tenant.name}")
+               println("Rent: ${tenant.rentAmount}")
+               println("Rent paid: ${tenant.isPaid}")
+               println()
+           }
+
+       }
    }
+
+    //task 6 testing
+    val apartment1 = Apartment(101, mutableListOf())
+    apartment1.addTenant(tenant1)
+    apartment1.addTenant(tenant2)
+    println("Number of tenants in apartment: ${apartment1.tenants.size}")
+
+
+    apartment1.showTenants()
+
 }
+
+
